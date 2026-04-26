@@ -1,0 +1,22 @@
+{
+  "name": "aide",
+  "version": "0.0.1",
+  "description": "AI Coding Agent Session Manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/trismegis7us/aide.git"
+  },
+  "author": "Nilson Nascimento",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trismegis7us/aide/issues"
+  },
+  "homepage": "https://github.com/trismegis7us/aide#readme",
+  "dependencies": {
+    "commander": "^14.0.3"
+  }
+}
