@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "AI Coding Agent Session Manager",
   "main": "index.js",
+  "type": "module",
+  "bin": {
+    "aide": "./index.cjs"
+  },
   "scripts": {
     "test": "test"
   },

@@ -5,6 +5,8 @@ const { Command, Option } = require('commander');
 const program = new Command();
 
 program
+  .name('aide')
+  .description('Create and manage AI coding agent workspaces')
   .command('create')
   .description('Create a new workspace which includes a git worktree and a coding agent.')
   .option('-n, --name <name>', 'workspace name')
