@@ -1,14 +1,29 @@
 {
-  "name": "aide",
+  "name": "openaide",
   "version": "0.0.1",
   "description": "AI Coding Agent Session Manager",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "aide": "./index.cjs"
+    "openaide": "./index.cjs"
   },
   "scripts": {
-    "test": "test"
+    "test": "echo \"No tests yet\""
+  },
+  "files": [
+    "index.cjs"
+  ],
+  "keywords": [
+    "ai",
+    "agent",
+    "tmux",
+    "git-worktree",
+    "opencode",
+    "cli",
+    "workspace"
+  ],
+  "engines": {
+    "node": ">=18"
   },
   "repository": {
     "type": "git",

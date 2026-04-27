@@ -5,12 +5,12 @@ const { Command, Option } = require('commander');
 const { existsSync, readFileSync } = require('fs');
 const { join, resolve, parse } = require('path');
 
-const GIT_WORKTREE_BASE_PATH = join('..', 'aide', 'worktrees');
+const GIT_WORKTREE_BASE_PATH = join('..', '.openaide', 'worktrees');
 
 const program = new Command();
 
 program
-  .name('aide')
+  .name('openaide')
   .description('Create and manage AI coding agent workspaces')
   .command('create')
   .description('Create a new workspace which includes a git worktree and a coding agent.')
