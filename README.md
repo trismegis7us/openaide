@@ -2,9 +2,9 @@
 
 **Manage AI agent workspaces using git worktrees, tmux, and opencode.**
 
-[![npm version](https://img.shields.io/npm/v/openaide)](https://www.npmjs.com/package/openaide)
-[![license](https://img.shields.io/npm/l/openaide)](LICENSE)
-[![node](https://img.shields.io/node/v/openaide)](package.json)
+[![npm version](https://img.shields.io/npm/v/@trismegis7us/openaide)](https://www.npmjs.com/package/@trismegis7us/openaide)
+[![license](https://img.shields.io/npm/l/@trismegis7us/openaide)](LICENSE)
+[![node](https://img.shields.io/node/v/@trismegis7us/openaide)](package.json)
 
 `openaide` wires together a **git worktree**, a **tmux session**, and an **opencode AI agent** into a fully isolated coding workspace — all from a single command. Each workspace lives in its own branch and directory, so multiple agents can work on different tasks in parallel without stepping on each other.
 
