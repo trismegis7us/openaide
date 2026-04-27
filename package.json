@@ -1,5 +1,5 @@
 {
-  "name": "openaide",
+  "name": "@trismegis7us/openaide",
   "version": "0.0.1",
   "description": "AI Coding Agent Session Manager",
   "main": "index.js",

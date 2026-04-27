@@ -23,7 +23,7 @@ The following must be installed and available on your `PATH`:
 ## Installation
 
 ```sh
-npm install -g openaide
+npm install -g @trismegis7us/openaide
 ```
 
 ---
