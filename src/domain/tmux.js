@@ -29,3 +29,22 @@ export function createTmuxSession(session, path, { shell, logger }) {
   shell.spawn('tmux', ['new-session', '-d', '-s', session, '-c', path]);
   logger.info('Tmux session created.');
 }
+
+/**
+ * Kills a tmux session if it exists. No-op if the session is not found.
+ *
+ * @param {string} session - Session name.
+ * @param {{ spawn: (cmd: string, args: string[], opts?: object) => import('child_process').SpawnSyncReturns<Buffer> }} shell
+ * @param {{ info: (...args: any[]) => void }} logger
+ */
+export function killTmuxSession(session, { shell, logger }) {
+  logger.info('Killing tmux session:', session);
+
+  if (!tmuxSessionExists(session, { shell })) {
+    logger.info(`Tmux session "${session}" does not exist, skipping.`);
+    return;
+  }
+
+  shell.spawn('tmux', ['kill-session', '-t', session]);
+  logger.info('Tmux session killed.');
+}

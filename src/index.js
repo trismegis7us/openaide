@@ -2,6 +2,7 @@ import { Command, Option } from 'commander';
 import * as shell from './services/shell.js';
 import * as fs from './services/fs.js';
 import { createCommand } from './commands/create.js';
+import { deleteCommand } from './commands/delete.js';
 
 const services = { shell, fs };
 
@@ -23,6 +24,13 @@ export function createProgram() {
     )
     .option('-v, --verbose', 'Enable verbose logging.')
     .action((name, options) => createCommand(name, options, services));
+
+  program
+    .command('delete')
+    .description('Delete a workspace (worktree, branch, and tmux session).')
+    .argument('<name>', 'Workspace name to delete.')
+    .option('-v, --verbose', 'Enable verbose logging.')
+    .action((name, options) => deleteCommand(name, options, services));
 
   return program;
 }

@@ -54,3 +54,37 @@ export function createGitWorktree(path, { fs, shell, logger }) {
 
   shell.spawn('git', ['worktree', 'add', path], { stdio: 'inherit' });
 }
+
+/**
+ * Removes a git worktree at the given path.
+ * Exits with an error if the worktree is dirty or untracked files are present.
+ *
+ * @param {string} path - Absolute path of the worktree to remove.
+ * @param {{ spawn: (cmd: string, args: string[], opts?: object) => import('child_process').SpawnSyncReturns<Buffer> }} shell
+ * @param {{ info: (...args: any[]) => void }} logger
+ */
+export function removeGitWorktree(path, { shell, logger }) {
+  logger.info('Removing git worktree at path:', path);
+  const result = shell.spawn('git', ['worktree', 'remove', path], { stdio: 'inherit' });
+  if (result.status !== 0) {
+    throw new Error(`Failed to remove git worktree at "${path}". The worktree may be dirty or have untracked files.`);
+  }
+  logger.info('Git worktree removed.');
+}
+
+/**
+ * Deletes a git branch using safe delete (-d).
+ * Exits with an error if the branch has unmerged commits.
+ *
+ * @param {string} name - Branch name to delete.
+ * @param {{ spawn: (cmd: string, args: string[], opts?: object) => import('child_process').SpawnSyncReturns<Buffer> }} shell
+ * @param {{ info: (...args: any[]) => void }} logger
+ */
+export function deleteGitBranch(name, { shell, logger }) {
+  logger.info('Deleting git branch:', name);
+  const result = shell.spawn('git', ['branch', '-d', name], { stdio: 'inherit' });
+  if (result.status !== 0) {
+    throw new Error(`Failed to delete git branch "${name}". The branch may have unmerged commits.`);
+  }
+  logger.info('Git branch deleted.');
+}
