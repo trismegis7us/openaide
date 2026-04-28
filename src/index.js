@@ -2,6 +2,7 @@ import { Command, Option } from 'commander';
 import * as shell from './services/shell.js';
 import * as fs from './services/fs.js';
 import { createCommand } from './commands/create.js';
+import { listCommand } from './commands/list.js';
 
 const services = { shell, fs };
 
@@ -23,6 +24,11 @@ export function createProgram() {
     )
     .option('-v, --verbose', 'Enable verbose logging.')
     .action((name, options) => createCommand(name, options, services));
+
+  program
+    .command('list')
+    .description('List all active workspaces.')
+    .action(() => listCommand(services));
 
   return program;
 }

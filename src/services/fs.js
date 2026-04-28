@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync, readdirSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 
@@ -18,6 +18,15 @@ export function exists(path) {
  */
 export function readFile(path) {
   return readFileSync(path, 'utf8');
+}
+
+/**
+ * Returns directory entries for the given path.
+ * @param {string} path
+ * @returns {import('fs').Dirent[]}
+ */
+export function readdir(path) {
+  return readdirSync(path, { withFileTypes: true });
 }
 
 /**
