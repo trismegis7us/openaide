@@ -1,3 +1,5 @@
+import { basename } from 'path';
+
 const DEFAULT_MODEL = 'github-copilot/claude-sonnet-4.6';
 const DEFAULT_AGENT = 'plan';
 
@@ -20,7 +22,8 @@ export function runOpencode(workspaceName, specFile, prompt, { fs, shell }) {
 
   if (specFile) {
     const spec = fs.readFile(specFile);
-    cmd = `opencode --prompt ${JSON.stringify(spec)} --model ${DEFAULT_MODEL} --agent ${DEFAULT_AGENT}`;
+    const tmpFile = fs.writeTempFile(spec, basename(specFile));
+    cmd = `opencode --prompt "$(cat ${tmpFile})" --model ${DEFAULT_MODEL} --agent ${DEFAULT_AGENT}`;
     shell.spawn('tmux', ['send-keys', '-t', workspaceName, cmd, 'C-m']);
   } else if (prompt) {
     cmd = `opencode --prompt ${JSON.stringify(prompt)}`;
