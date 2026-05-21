@@ -1,4 +1,4 @@
-import { basename } from 'path';
+import path from 'path';
 
 const DEFAULT_MODEL = 'github-copilot/claude-sonnet-4.6';
 const DEFAULT_AGENT = 'plan';
@@ -12,18 +12,17 @@ const DEFAULT_AGENT = 'plan';
  *  3. neither   — launches opencode interactively with no arguments.
  *
  * @param {string} workspaceName - Tmux session name to send keys to.
- * @param {string|undefined} specFile - Path to the spec file.
+ * @param {string|undefined} specFilePath - Path to the spec file.
  * @param {string|undefined} prompt - Inline prompt text.
- * @param {{ readFile: (path: string) => string }} fs
  * @param {{ spawn: (cmd: string, args: string[], opts?: object) => void }} shell
  */
-export function runOpencode(workspaceName, specFile, prompt, { fs, shell }) {
+export function runOpencode(workspaceName, specFilePath, prompt, { shell }) {
   let cmd;
 
-  if (specFile) {
-    const spec = fs.readFile(specFile);
-    const tmpFile = fs.writeTempFile(spec, basename(specFile));
-    cmd = `opencode --prompt "$(cat ${tmpFile})" --model ${DEFAULT_MODEL} --agent ${DEFAULT_AGENT}`;
+  if (specFilePath) {
+    const fileName = path.parse(specFilePath).name;
+    const relativeTmuxSpecFilePath = path.join('..', '..', specFilePath);
+    cmd = `opencode run --title ${fileName} --file ${relativeTmuxSpecFilePath} --model ${DEFAULT_MODEL} --agent ${DEFAULT_AGENT}`;
     shell.spawn('tmux', ['send-keys', '-t', workspaceName, cmd, 'C-m']);
   } else if (prompt) {
     cmd = `opencode --prompt ${JSON.stringify(prompt)}`;

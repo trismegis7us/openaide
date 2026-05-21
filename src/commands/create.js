@@ -20,5 +20,5 @@ export function createCommand(name, options, { shell, fs }) {
 
   createGitWorktree(workspacePath, { fs, shell, logger });
   createTmuxSession(workspaceName, workspacePath, { shell, logger });
-  runOpencode(workspaceName, specFile, prompt, { fs, shell });
+  runOpencode(workspaceName, specFile, prompt, { shell });
 }
