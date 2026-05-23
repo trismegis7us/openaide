@@ -5,9 +5,10 @@
   "main": "src/index.js",
   "type": "module",
   "bin": {
-    "openaide": "./bin/cli.js"
+    "openaide": "./dist/index.js"
   },
   "scripts": {
+    "build": "tsc",
     "test": "node --test 'src/**/*.test.js'"
   },
   "files": [
@@ -38,5 +39,10 @@
   "homepage": "https://github.com/trismegis7us/aide#readme",
   "dependencies": {
     "commander": "^14.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "tsx": "^4.22.3",
+    "typescript": "^6.0.3"
   }
 }
