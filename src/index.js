@@ -36,7 +36,8 @@ export function createProgram() {
   program
     .command('list')
     .description('List all active workspaces.')
-    .action(() => listCommand(services));
+    .option('--json', 'Format output as JSON.')
+    .action((options) => listCommand(options, services));
 
   return program;
 }
