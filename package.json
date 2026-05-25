@@ -38,7 +38,8 @@
   },
   "homepage": "https://github.com/trismegis7us/aide#readme",
   "dependencies": {
-    "commander": "^14.0.3"
+    "commander": "^14.0.3",
+    "gray-matter": "^4.0.3"
   },
   "devDependencies": {
     "@types/node": "^25.9.1",
