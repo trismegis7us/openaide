@@ -6,6 +6,7 @@ import * as fs from './services/fs.js';
 import { createCommand } from './commands/create.js';
 import { deleteCommand } from './commands/delete.js';
 import { listCommand } from './commands/list.js';
+import { listDependenciesCommand } from './commands/list-dependencies.ts';
 
 const services = { shell, fs };
 
@@ -40,4 +41,24 @@ program
   .option('--json', 'Format output as JSON.')
   .action((options) => listCommand(options, services));
 
+const spec = program
+  .command('spec')
+  .description('Manage spec files, dependency chains, priorities, and more.');
+
+spec
+  .command('run')
+  .description('Runs the create command with the given spec file.')
+  .argument('[spec]', 'The spec file to launch the workspace with.')
+  .action((spec) => {
+    createCommand(undefined, { specFile: spec }, services);
+  });
+
+spec
+  .command('ready')
+  .description('List all specs that are ready to be worked on.')
+  .option('-s, --spec-files <specFiles...>', 'Markdown spec files to analyze. Default is all.')
+  .option("--json", "Output as JSON")
+  .action((options) => listDependenciesCommand(options, services));
+
+// Process argv
 program.parse(process.argv);
