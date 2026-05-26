@@ -1,4 +1,4 @@
-import { listWorkspaces, getWorktreesDir } from '../domain/workspace.js';
+import { listWorkspaces, getWorktreesDir } from '../domain/workspace.ts';
 
 /**
  * Action handler for the `list` command.

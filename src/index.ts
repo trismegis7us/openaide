@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 import { Command, Option } from 'commander';
-import * as shell from './services/shell.js';
-import * as fs from './services/fs.js';
-import { createCommand } from './commands/create.js';
-import { deleteCommand } from './commands/delete.js';
-import { listCommand } from './commands/list.js';
+import * as shell from './services/shell.ts';
+import * as fs from './services/fs.ts';
+import { createCommand } from './commands/create.ts';
+import { deleteCommand } from './commands/delete.ts';
+import { listCommand } from './commands/list.ts';
 import { listDependenciesCommand } from './commands/list-dependencies.ts';
 
 const services = { shell, fs };
@@ -22,7 +22,7 @@ if (!process.stdin.isTTY) {
     .split('\n');
 }
 
-const program = new Command();
+export const program = new Command();
 
 program
   .name('openaide')
@@ -75,6 +75,3 @@ spec
   .option('-s, --spec-files <specFiles...>', 'Markdown spec files to analyze. Default is all.')
   .option("--json", "Output as JSON")
   .action((options) => listDependenciesCommand(options, services));
-
-// Process argv
-program.parse(process.argv);

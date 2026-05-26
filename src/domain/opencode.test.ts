@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { runOpencode } from './opencode.js';
+import { runOpencode } from './opencode.ts';
 
 const DEFAULT_MODEL = 'github-copilot/claude-sonnet-4.6';
 const DEFAULT_AGENT = 'plan';

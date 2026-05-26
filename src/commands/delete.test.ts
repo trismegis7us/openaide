@@ -1,7 +1,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { resolve } from 'path';
-import { deleteCommand } from './delete.js';
+import { deleteCommand } from './delete.ts';
 
 const baseOptions = { verbose: false };
 

@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { tmuxSessionExists, createTmuxSession } from './tmux.js';
+import { tmuxSessionExists, createTmuxSession } from './tmux.ts';
 
 describe('tmuxSessionExists', () => {
   it('returns true when spawn returns status 0', () => {

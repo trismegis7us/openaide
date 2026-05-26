@@ -1,5 +1,5 @@
 import { join, resolve } from 'path';
-import { tmuxSessionExists } from './tmux.js';
+import { tmuxSessionExists } from './tmux.ts';
 
 const GIT_WORKTREE_BASE_PATH = join('..', '.openaide', 'worktrees');
 

@@ -1,7 +1,7 @@
-import { getWorkspace, createGitWorktree } from '../domain/git.js';
-import { createTmuxSession } from '../domain/tmux.js';
-import { runOpencode } from '../domain/opencode.js';
-import { createLogger } from '../utils/logger.js';
+import { getWorkspace, createGitWorktree } from '../domain/git.ts';
+import { createTmuxSession } from '../domain/tmux.ts';
+import { runOpencode } from '../domain/opencode.ts';
+import { createLogger } from '../utils/logger.ts';
 
 /**
  * Action handler for the `create` command.

@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "bin": {
-    "openaide": "dist/index.js"
+    "openaide": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc",

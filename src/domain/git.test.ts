@@ -1,7 +1,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { resolve } from 'path';
-import { getWorkspace, createGitWorktree } from './git.js';
+import { getWorkspace, createGitWorktree } from './git.ts';
 
 const GIT_WORKTREE_BASE_PATH = '../.openaide/worktrees';
 

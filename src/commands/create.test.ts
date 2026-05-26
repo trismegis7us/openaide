@@ -1,7 +1,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { resolve } from 'path';
-import { createCommand } from './create.js';
+import { createCommand } from './create.ts';
 
 function makeShell() {
   const calls = [];

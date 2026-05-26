@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { listWorkspaces } from './workspace.js';
+import { listWorkspaces } from './workspace.ts';
 
 const makeDir = (name) => ({ name, isDirectory: () => true });
 const makeFile = (name) => ({ name, isDirectory: () => false });

@@ -1,6 +1,6 @@
-import { getWorkspace, removeGitWorktree, deleteGitBranch } from '../domain/git.js';
-import { killTmuxSession } from '../domain/tmux.js';
-import { createLogger } from '../utils/logger.js';
+import { getWorkspace, removeGitWorktree, deleteGitBranch } from '../domain/git.ts';
+import { killTmuxSession } from '../domain/tmux.ts';
+import { createLogger } from '../utils/logger.ts';
 
 /**
  * Action handler for the `delete` command.
