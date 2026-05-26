@@ -1,6 +1,6 @@
 {
   "name": "@trismegis7us/openaide",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "AI Coding Agent Session Manager",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
