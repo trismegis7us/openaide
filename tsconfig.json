@@ -5,12 +5,12 @@
     "moduleResolution": "NodeNext",
     "rootDir": "src",
     "outDir": "dist",
+    "declaration": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "allowJs": true,
-    "checkJs": false,
+    "allowJs": false,
     "noImplicitAny": false,
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
@@ -20,5 +20,10 @@
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "**/*.test.ts"
   ]
 }

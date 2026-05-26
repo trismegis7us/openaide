@@ -3,6 +3,12 @@ import { tmuxSessionExists } from './tmux.js';
 
 const GIT_WORKTREE_BASE_PATH = join('..', '.openaide', 'worktrees');
 
+type Workspace = {
+  name: string;
+  path: string;
+  created: string;
+};
+
 /**
  * Returns the absolute path to the worktrees directory.
  *
@@ -20,13 +26,13 @@ export function getWorktreesDir() {
  * @param {{ shell: object, fs: object }} services - Injected services.
  * @returns {Array<{ name: string, path: string, created: string }>}
  */
-export function listWorkspaces(worktreesDir, { shell, fs }) {
+export function listWorkspaces(worktreesDir, { shell, fs }): Workspace[] {
   if (!fs.exists(worktreesDir)) {
     return [];
   }
 
   const entries = fs.readdir(worktreesDir).filter((e) => e.isDirectory());
-  const workspaces = [];
+  const workspaces: Workspace[] = [];
 
   for (const entry of entries) {
     const name = entry.name;
