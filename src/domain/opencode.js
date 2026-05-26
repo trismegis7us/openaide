@@ -1,3 +1,4 @@
+import matter from 'gray-matter';
 import path from 'path';
 
 const DEFAULT_MODEL = 'github-copilot/claude-sonnet-4.6';
@@ -16,13 +17,18 @@ const DEFAULT_AGENT = 'plan';
  * @param {string|undefined} prompt - Inline prompt text.
  * @param {{ spawn: (cmd: string, args: string[], opts?: object) => void }} shell
  */
-export function runOpencode(workspaceName, specFilePath, prompt, { shell }) {
+export function runOpencode(workspaceName, specFilePath, prompt, { fs, shell }) {
   let cmd;
 
   if (specFilePath) {
     const fileName = path.parse(specFilePath).name;
     const relativeTmuxSpecFilePath = path.join('..', '..', specFilePath);
-    cmd = `opencode run --title ${fileName} --file ${relativeTmuxSpecFilePath} --model ${DEFAULT_MODEL} --agent ${DEFAULT_AGENT}`;
+
+    const fileContents = fs.readFile(specFilePath, 'utf8');
+    const fileFrontmatter = matter(fileContents);
+    const fileContent = fileFrontmatter.content;
+
+    cmd = `opencode --prompt "${fileContent}" --model ${DEFAULT_MODEL} --agent ${DEFAULT_AGENT}`;
     shell.spawn('tmux', ['send-keys', '-t', workspaceName, cmd, 'C-m']);
   } else if (prompt) {
     cmd = `opencode --prompt ${JSON.stringify(prompt)}`;
