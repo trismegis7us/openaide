@@ -10,6 +10,18 @@ import { listDependenciesCommand } from './commands/list-dependencies.ts';
 
 const services = { shell, fs };
 
+let stdinInput: string[] = [];
+process.stdin.setEncoding('utf8');
+if (!process.stdin.isTTY) {
+  let stdin = '';
+  for await (const chunk of process.stdin) {
+    stdin += chunk;
+  }
+  stdinInput = stdin
+    .trim()
+    .split('\n');
+}
+
 const program = new Command();
 
 program
@@ -31,9 +43,12 @@ program
 program
   .command('delete')
   .description('Delete a workspace (worktree, branch, and tmux session).')
-  .argument('<name>', 'Workspace name to delete.')
+  .argument('[workspaces...]', 'Workspace name to delete.')
   .option('-v, --verbose', 'Enable verbose logging.')
-  .action((name, options) => deleteCommand(name, options, services));
+  .action((workspaces, options) =>
+    (process.stdin.isTTY ? workspaces : stdinInput)
+      .forEach((workspace: string) => deleteCommand(workspace, options, services))
+  );
 
 program
   .command('list')
@@ -48,10 +63,11 @@ const spec = program
 spec
   .command('run')
   .description('Runs the create command with the given spec file.')
-  .argument('[spec]', 'The spec file to launch the workspace with.')
-  .action((spec) => {
-    createCommand(undefined, { specFile: spec }, services);
-  });
+  .argument('[specFiles...]', 'The spec file to launch the workspace with.')
+  .action((specFiles) =>
+    (process.stdin.isTTY ? specFiles : stdinInput)
+      .forEach((specFile: string) => createCommand(undefined, { specFile }, services))
+  );
 
 spec
   .command('ready')
