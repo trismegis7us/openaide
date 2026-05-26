@@ -1,15 +1,17 @@
 {
   "name": "@trismegis7us/openaide",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "AI Coding Agent Session Manager",
-  "main": "src/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.js.map",
   "type": "module",
   "bin": {
-    "openaide": "./dist/index.js"
+    "openaide": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
-    "test": "node --test 'src/**/*.test.js'"
+    "test": "node --test 'src/**/*.test.js'",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "bin",
